@@ -1,5 +1,9 @@
 # OpenFOAM cases
 
+.
+.
+.
+
 # VIV_cylinder
 
 Vortex induced vibrations tutorial case, the starting point for the first "discord-project". Dynamic mesh with SDOF, transient BC, setup for OpenFOAM 5.0. There might be some minor flaws, so check for updates.
