@@ -1,0 +1,8 @@
+set logscale y
+set title "Residuals"
+set ylabel 'Residual'
+set xlabel 'Iteration'
+plot "< cat log.pimpleDyMFoam | grep 'Solving for k' | cut -d' ' -f9 | tr -d ','" title 'Ux' with lines,\
+"< cat log.pimpleDyMFoam | grep 'Solving for omega' | cut -d' ' -f9 | tr -d ','" title 'Uy' with lines,
+pause 5
+reread

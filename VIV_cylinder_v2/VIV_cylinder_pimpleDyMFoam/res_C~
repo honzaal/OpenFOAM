@@ -1,0 +1,7 @@
+set logscale y
+set title "Residuals"
+set ylabel 'Residual'
+set xlabel 'Iteration'
+plot "< cat log | grep 'continuity errors :' | cut -d' ' -f9 | tr -d ','" title 'continuity' with lines,
+pause 5
+reread

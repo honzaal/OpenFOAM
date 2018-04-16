@@ -1,0 +1,8 @@
+set logscale y
+set title "Residuals"
+set ylabel 'Residual'
+set xlabel 'Iteration'
+plot "< cat log.simpleFoam | grep 'Solving for k' | cut -d' ' -f9 | tr -d ','" title 'k' with lines,\
+"< cat log.simpleFoam | grep 'Solving for omega' | cut -d' ' -f9 | tr -d ','" title 'omega' with lines,
+pause 5
+reread
