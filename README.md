@@ -16,4 +16,4 @@ Please visit https://discord.gg/P9p9eHn for more information and progress in thi
 
 # VIV_cylinder_v2
 
-The same case with different settings, much quicker results. Steady-state simulation with mapping added so the show starts quickly (good for testing), but for real I'd use only the unsteady part with transient BC. 
+The same case with different settings, much quicker results. Lower turbulent KE and dissipation rate on inlet too. Steady-state simulation with mapping added so the show starts quickly (good for testing), but for real I'd use only the unsteady part with transient BC. 
