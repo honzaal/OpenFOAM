@@ -15,15 +15,22 @@ FoamFile
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 
-//All of the parameter definitions are mentioned here:
+//Please keep in mind that these comments may be inaccurate or misleading..
+
+
+//___________________________________________________________________________//
+
+//Most of the parameter definitions are mentioned here:
 //
 //    https://openfoamwiki.net/index.php/Parameter_Definitions_-_dynamicMotionSolverFvMesh
 //
-//so I'll not repeat all of that.. but have in mind that the guide was made
-//for OF 2.2 version from Engys (so minor changes appeared for OF 5.0)
+//so I'll skip what's unnecessary.. and note that the guide was made
+//for OF 2.2 version from Engys (some changes appeared for OF 5.0)
+
+//___________________________________________________________________________//
 
 
-dynamicFvMesh      dynamicMotionSolverFvMesh;//
+dynamicFvMesh      dynamicMotionSolverFvMesh;
 
 motionSolverLibs ("libsixDoFRigidBodyMotion.so");
 
@@ -110,5 +117,6 @@ restraints
 }
 
 //also see paragraph "10 Physics - Boundary Condition Setup" in the guide
+
 
 // ************************************************************************* //
