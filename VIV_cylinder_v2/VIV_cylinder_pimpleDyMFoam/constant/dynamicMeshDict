@@ -14,29 +14,49 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dynamicFvMesh      dynamicMotionSolverFvMesh;
+
+//All of the parameter definitions are mentioned here:
+//
+//    https://openfoamwiki.net/index.php/Parameter_Definitions_-_dynamicMotionSolverFvMesh
+//
+//so I'll not repeat all of that.. but have in mind that the guide was made
+//for OF 2.2 version from Engys (so minor changes appeared for OF 5.0)
+
+
+dynamicFvMesh      dynamicMotionSolverFvMesh;//
 
 motionSolverLibs ("libsixDoFRigidBodyMotion.so");
 
 motionSolver    sixDoFRigidBodyMotion;
 
-patches         (valec);
-innerDistance   0.25;	//in meters
-outerDistance   1.09;	//
+//"diffusivity" keyword is not specified here since there's no need for it
+//default behaviour is fine but you can try yourself for other
+
+patches         (valec);//"valec" = czech term for "cylinder".. now you know :)
+innerDistance   0.25;	//distance in meters
+outerDistance   1.09;	//distance in meters
 
 mass            0.0875;
 centreOfMass    (0 0 0);
-momentOfInertia (1 1 1);//no rotation anyway
-orientation
+
+momentOfInertia (1 1 1);//no need to evaluate since rotation is supressed
+orientation//origin used as reference for rotation angles (see restraints)
 (
     1 0 0
     0 1 0
     0 0 1
 );
-angularMomentum (0 0 0);
+
+//velocity      (0 0 0);//initial conditions for movement
+//acceleration  (0 0 0);//no need to specify if zeros
+//angularMomentum (0 0 0);
+//torque        (0 0 0);
+
 g               (0 0 0);
-rho             rhoInf;
+
+rho             rhoInf;//the same definition as in forces function object
 rhoInf          1.205;
+
 report          on;
 
 solver
@@ -46,43 +66,49 @@ solver
 
 constraints
 {
-    yLine
+    yLine//just a name (your choice)
     {
-        sixDoFRigidBodyMotionConstraint line;
-        centreOfRotation    (0 0 0);
+        sixDoFRigidBodyMotionConstraint line;//type of the constraint
+        
+        centreOfRotation    (0 0 0);//centre point of the line.. uses or derives definition 
+                                    //from another lib, therefore a bit strange keywords here
         direction           (0 1 0);
     }
 
-    zAxis
+    zAxis//name
     {
         sixDoFRigidBodyMotionConstraint axis;
+        
         axis                (0 0 1);
     }
 }
 
 restraints
 {
-    verticalSpring
+    verticalSpring//name
     {
         sixDoFRigidBodyMotionRestraint linearSpring;
 
-        anchor          (0 0 0);
-        refAttachmentPt (0 0 0);
-        stiffness       21.6;
-        damping         0.001;
-        restLength      0;
+        anchor          (0 0 0);//fixed end point of the spring (doesn't move at all)
+        refAttachmentPt (0 0 0);//attachment point on the body
+        
+        stiffness       21.6;//was evaluated from natural frequency
+        damping         0.001;//roughly estimated
+        
+        restLength      0;//initial condition of the spring
     }
 
-    axialSpring
+    axialSpring//name
     {
         sixDoFRigidBodyMotionRestraint linearAxialAngularSpring;
 
         axis            (0 0 1);
-        stiffness       100;
-        damping         1;
-        referenceOrientation $orientation;
+        stiffness       1e9;//we want to surpress the rotation
+        damping         1;//bc why not
+        referenceOrientation $orientation;//see the "orientation" parameter
     }
 }
 
+//also see paragraph "10 Physics - Boundary Condition Setup" in the guide
 
 // ************************************************************************* //
