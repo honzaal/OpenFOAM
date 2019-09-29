@@ -15,9 +15,9 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-application     pimpleDyMFoam;
+application     pimpleFoam;// pimpleDymFoam and pimpleFoam were unified
 
-startFrom       latestTime;//startTime;
+startFrom       latestTime;
 
 startTime       0;
 
@@ -45,7 +45,7 @@ timePrecision   10;
 
 runTimeModifiable true;
 
-adjustTimeStep  yes; //"no" for easier FFT
+adjustTimeStep  yes; //"no" for uniform TS - easier FFT
 
 maxCo           0.8;
 
