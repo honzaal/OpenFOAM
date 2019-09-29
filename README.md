@@ -14,4 +14,4 @@ Please visit https://discord.gg/P9p9eHn for more information and progress in thi
 
 The same case but different settings, much quicker results. Steady-state simulation (simpleFoam) is done first to skip the long period of vortex formation, followed by field mapping to other case for transient solver (pimpleDyMFoam). This way the show starts quickly (good for testing) but for real results I'd only do the unsteady part with transient BCs (at least some ramp functions to avoid the initial 'kick' from steady solution that is a bit unphysical). Turbulent KE and dissipation rate lowered on inlet.
 
-edit: Due to some changes in newer commits of OpenFOAM v6, the case was updated (tested on commit 6-d3fd147e6c65).
+edit: Due to some changes in newer commits of OpenFOAM v6, a few corresponding settings were updated but the case still crashes (tested on commits 6-d3fd147e6c65 and dev-4163d53eec18). The crash occurs for parallel run (decomposed in x or y) but serial run seems to be ok. Will be resolved soon.
