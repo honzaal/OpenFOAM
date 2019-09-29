@@ -12,4 +12,4 @@ Please visit https://discord.gg/P9p9eHn for more information and progress in thi
 
 # VIV_cylinder_v2
 
-The same case but different settings, much quicker results. Steady-state simulation (simpleFoam) is done first to skip the long period of vortex formation, followed by field mapping to other case for transient solver (pimpleDyMFoam). This way the show starts quickly (good for testing) but for real results I'd only do the unsteady part with transient BC (the initial 'kick' from steady solution is a bit unphysical). Turbulent KE and dissipation rate lowered on inlet.
+The same case but different settings, much quicker results. Steady-state simulation (simpleFoam) is done first to skip the long period of vortex formation, followed by field mapping to other case for transient solver (pimpleDyMFoam). This way the show starts quickly (good for testing) but for real results I'd only do the unsteady part with transient BCs (at least some ramp functions - the initial 'kick' from steady solution is a bit unphysical). Turbulent KE and dissipation rate lowered on inlet.
